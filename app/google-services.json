@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "299988403719",
+    "project_id": "hirehero-386df",
+    "storage_bucket": "hirehero-386df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:299988403719:android:6d8869fbc921c476cbcca2",
+        "android_client_info": {
+          "package_name": "com.example.hirehero"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "299988403719-m09t3188i2m35ccuokgsb67ftfpdeekb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOMxipX5AmF1gQR0FDrwqkVa3oux4ZfR0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "299988403719-m09t3188i2m35ccuokgsb67ftfpdeekb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
