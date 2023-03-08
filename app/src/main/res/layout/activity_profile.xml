@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".Profile">
+    tools:context=".ListService">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/submitListingButton"
@@ -19,7 +19,7 @@
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.172"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contact"
         app:layout_constraintVertical_bias="1.0" />
@@ -91,24 +91,6 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/details" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/listings"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="88dp"
-        android:background="@drawable/forgotpassbutton"
-        android:backgroundTint="#FFFFFF"
-        android:fontFamily="sans-serif-black"
-        android:text="VIEW LISTINGS"
-        android:textColor="@color/grey"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.881"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contact"
-        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

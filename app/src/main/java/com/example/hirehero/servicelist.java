@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,7 +29,7 @@ public class servicelist extends AppCompatActivity implements View.OnClickListen
     MyAdapter myAdapter;
     ArrayList<Listing> list;
     EditText listingsearch;
-    private Button searchButton;
+    ImageView searchButton;
 
     @SuppressLint("MissingInflatedId")
     @Override

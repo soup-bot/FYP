@@ -7,42 +7,42 @@
     android:layout_height="match_parent">
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/servicelist"
+        android:layout_width="385dp"
+        android:layout_height="585dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.894" />
+
     <EditText
         android:id="@+id/listingsearch"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="301dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="24dp"
         android:background="@drawable/box"
         android:ems="10"
         android:gravity="center"
-        android:hint="Service"
+        android:hint="Search"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/orange"
         android:textColorHint="#83FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/servicelist"
-        android:layout_width="405dp"
-        android:layout_height="399dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/servicelist"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.951" />
+        app:layout_constraintVertical_bias="0.525" />
 
-    <Button
+    <ImageView
         android:id="@+id/searchButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
+        android:layout_width="56dp"
+        android:layout_height="53dp"
+        android:layout_weight="1"
         app:layout_constraintBottom_toTopOf="@+id/servicelist"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listingsearch"
-        app:layout_constraintVertical_bias="0.432" />
+        app:layout_constraintStart_toEndOf="@+id/listingsearch"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.538"
+        app:srcCompat="@drawable/search" />
 </androidx.constraintlayout.widget.ConstraintLayout>
