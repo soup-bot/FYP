@@ -84,7 +84,7 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
             return;
         }
 
-        Listing newListing = new Listing(serviceInput, priceInput, detailsInput, contactInput);
+        Listing newListing = new Listing(serviceInput, priceInput, detailsInput, contactInput, listingId, userId);
         String url = "https://hirehero-386df-default-rtdb.asia-southeast1.firebasedatabase.app";
         //FirebaseDatabase.getInstance(url).getReference("Listings").child(userId).child(listingId).setValue(newListing)
         FirebaseDatabase.getInstance(url).getReference("Listings").child(listingId).setValue(newListing)
@@ -95,5 +95,6 @@ public class Profile extends AppCompatActivity implements View.OnClickListener {
                         Toast.makeText(Profile.this, "Failed to add listing", Toast.LENGTH_LONG).show();
                     }
                 });
+      //  FirebaseDatabase.getInstance(url).getReference("Listings").child(listingId).child("bidAmount").setValue(0);
     }
 }

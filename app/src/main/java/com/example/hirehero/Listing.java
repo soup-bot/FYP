@@ -7,6 +7,13 @@ public class Listing implements Serializable {
     private String price;
     private String details;
     private String contact;
+    private String listingID;
+
+    public String getUserID() {
+        return userID;
+    }
+
+    private String userID;
 
     public String getService() {
         return service;
@@ -35,11 +42,13 @@ public class Listing implements Serializable {
     public Listing() {
     }
 
-    public Listing(String service, String price, String details, String contact) {
+    public Listing(String service, String price, String details, String contact, String listingID, String userID) {
         this.service = service;
         this.price = price;
         this.details = details;
         this.contact = contact;
+        this.listingID = listingID;
+        this.userID = userID;
     }
 
     public void setServiceName(String service) {
@@ -52,5 +61,9 @@ public class Listing implements Serializable {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getListingID() {
+        return listingID;
     }
 }

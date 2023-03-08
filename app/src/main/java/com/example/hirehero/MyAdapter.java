@@ -69,6 +69,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
             details = itemView.findViewById(R.id.tvdetails);
             contact = itemView.findViewById(R.id.tvcontact);
 
+
         }
+    }
+    public void clearList(){
+        list.clear();
     }
 }

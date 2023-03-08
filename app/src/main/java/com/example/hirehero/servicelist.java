@@ -95,6 +95,7 @@ public class servicelist extends AppCompatActivity implements View.OnClickListen
                     list.add(listing);
                 }
                 myAdapter.notifyDataSetChanged();
+                database.removeEventListener(this);
             }
 
             @Override
