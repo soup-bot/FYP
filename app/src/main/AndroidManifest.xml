@@ -12,7 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Hirehero"
         tools:targetApi="31">
-
+        <activity
+            android:name=".ManageMyListing"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MyListings"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".UserProfile"
             android:exported="false">

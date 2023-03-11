@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class servicelist extends AppCompatActivity implements View.OnClickListener {
+public class servicelist extends AppCompatActivity implements MyAdapter.OnDeleteClickListener{
 
     RecyclerView recyclerView;
     DatabaseReference database;
@@ -44,45 +44,14 @@ public class servicelist extends AppCompatActivity implements View.OnClickListen
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         listingsearch = findViewById(R.id.listingsearch);
         list = new ArrayList<>();
-        myAdapter = new MyAdapter(this, list);
+        myAdapter = new MyAdapter(this, list,false,null);
         recyclerView.setAdapter(myAdapter);
         searchButton = findViewById(R.id.searchButton);
-        searchButton.setOnClickListener(this);
+        MyClickListener myClickListener = new MyClickListener(this, listingsearch, database, list, myAdapter);
+        searchButton.setOnClickListener(myClickListener);
         showAllListings();
     }
 
-    @Override
-    public void onClick(View view) {
-        String searchText = listingsearch.getText().toString().toLowerCase();
-        switch (view.getId()) {
-            case R.id.searchButton:
-                if (TextUtils.isEmpty(searchText)) {
-                    // if search field is empty, display all listings
-                    showAllListings();
-                } else {
-                    // filter listings based on search text
-                    Query query = database.orderByChild("service").startAt(searchText).endAt(searchText + "\uf8ff");
-                    query.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            list.clear();
-                            for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                                Listing listing = dataSnapshot.getValue(Listing.class);
-                                list.add(listing);
-
-                            }
-                            myAdapter.notifyDataSetChanged();
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                }
-                break;
-        }
-    }
 
 
     //method to display all listings in the database
@@ -104,6 +73,11 @@ public class servicelist extends AppCompatActivity implements View.OnClickListen
 
             }
         });
+
+    }
+
+    @Override
+    public void onClick(int position) {
 
     }
 }

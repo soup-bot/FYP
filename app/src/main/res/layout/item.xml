@@ -129,6 +129,18 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/viewbids"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="VIEW BIDS" />
+
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DELETE LISTING" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

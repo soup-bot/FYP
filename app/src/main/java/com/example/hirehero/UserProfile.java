@@ -41,6 +41,11 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
                 startActivity(new Intent(this, servicelist.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 break;
+            case R.id.viewmylist:
+                startActivity(new Intent(this, MyListings.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                break;
+
         }
     }
 }
