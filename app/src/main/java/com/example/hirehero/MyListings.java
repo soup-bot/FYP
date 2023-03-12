@@ -6,13 +6,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.view.View.OnClickListener;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -24,14 +27,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MyListings extends AppCompatActivity implements MyAdapter.OnDeleteClickListener {
+public class MyListings extends AppCompatActivity implements MyAdapter.OnDeleteClickListener, BidAdapter.OnViewClickListener{
 
     RecyclerView recyclerView2;
     DatabaseReference database;
     MyAdapter myAdapter;
     ArrayList<Listing> list;
-    EditText listingsearch;
-    ImageView searchButton;
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -45,49 +47,14 @@ public class MyListings extends AppCompatActivity implements MyAdapter.OnDeleteC
         database = FirebaseDatabase.getInstance(url).getReference("Listings");
         recyclerView2.setHasFixedSize(true);
         recyclerView2.setLayoutManager(new LinearLayoutManager(this));
-     //   listingsearch = findViewById(R.id.listingsearch);
         list = new ArrayList<>();
-        myAdapter = new MyAdapter(this, list,true,this);
+        myAdapter = new MyAdapter(this, list,true,this,this);
         recyclerView2.setAdapter(myAdapter);
-      //  searchButton = findViewById(R.id.searchButton);
-      //  searchButton.setOnClickListener(this);
+
+
         showCurrentUserListings();
     }
-/*
-    @Override
-    public void onClick(View view) {
-        String searchText = listingsearch.getText().toString().toLowerCase();
-        switch (view.getId()) {
-            case R.id.searchButton:
-                if (TextUtils.isEmpty(searchText)) {
-                    // if search field is empty, display all listings
-                    showCurrentUserListings();
-                } else {
-                    // filter listings based on search text
-                    Query query = database.orderByChild("service").startAt(searchText).endAt(searchText + "\uf8ff");
-                    query.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            list.clear();
-                            for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                                Listing listing = dataSnapshot.getValue(Listing.class);
-                                list.add(listing);
 
-                            }
-                            myAdapter.notifyDataSetChanged();
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                }
-                break;
-        }
-    }
-
-*/
     //method to display all listings in the database
     private void showCurrentUserListings(){
         list.clear();
@@ -126,5 +93,14 @@ public class MyListings extends AppCompatActivity implements MyAdapter.OnDeleteC
         } else {
             Toast.makeText(this, "You can only delete your own listings", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onViewClick(int position) {
+        Log.d("MyListings", "onViewClick() called");
+        Listing listing = list.get(position);
+        Intent intent = new Intent(MyListings.this, ViewBidsActivity.class);
+        intent.putExtra("listingId", listing.getListingID());
+        startActivity(intent);
     }
 }

@@ -44,7 +44,7 @@ public class servicelist extends AppCompatActivity implements MyAdapter.OnDelete
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         listingsearch = findViewById(R.id.listingsearch);
         list = new ArrayList<>();
-        myAdapter = new MyAdapter(this, list,false,null);
+        myAdapter = new MyAdapter(this, list,false,null,null);
         recyclerView.setAdapter(myAdapter);
         searchButton = findViewById(R.id.searchButton);
         MyClickListener myClickListener = new MyClickListener(this, listingsearch, database, list, myAdapter);

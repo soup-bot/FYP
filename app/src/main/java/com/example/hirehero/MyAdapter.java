@@ -3,6 +3,7 @@ package com.example.hirehero;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,15 +20,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     Context context;
     private boolean showDeleteButton;
     private OnDeleteClickListener onDeleteClickListener;
+    private BidAdapter.OnViewClickListener onViewClickListener;
 
-    public MyAdapter(Context context, ArrayList<Listing> list, boolean showDeleteButton, OnDeleteClickListener onDeleteClickListener) {
+    public MyAdapter(Context context, ArrayList<Listing> list, boolean showDeleteButton, OnDeleteClickListener onDeleteClickListener, BidAdapter.OnViewClickListener onViewClickListener) {
         this.context = context;
         this.list = list;
         this.showDeleteButton = showDeleteButton;
         this.onDeleteClickListener = onDeleteClickListener;
+        this.onViewClickListener = onViewClickListener;
     }
 
     ArrayList<Listing> list;
+
+    public interface OnViewClickListener {
+        void onViewClick(int position);
+    }
 
     public interface OnDeleteClickListener {
         void onClick(int position);
@@ -58,10 +65,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                     onDeleteClickListener.onClick(position);
                 }
             });
+            holder.viewbids.setOnClickListener(v -> {
+                if (onViewClickListener != null) {
+                    onViewClickListener.onViewClick(position);
+                }
+            });
+
         } else {
             holder.viewbids.setVisibility(View.GONE);
             holder.deleteButton.setVisibility(View.GONE);
         }
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

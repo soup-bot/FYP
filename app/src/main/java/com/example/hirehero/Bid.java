@@ -1,6 +1,7 @@
 package com.example.hirehero;
+import java.io.Serializable;
 
-public class Bid {
+public class Bid implements Serializable {
     private String bidderName;
     private String bidderContact;
     private int bidAmount;
