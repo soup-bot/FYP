@@ -42,7 +42,7 @@ public class ViewBidsActivity extends AppCompatActivity implements BidAdapter.On
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mBidsList = new ArrayList<>();
-        mBidAdapter = new BidAdapter(mBidsList, this);
+        mBidAdapter = new BidAdapter(mBidsList, this,null);
         mRecyclerView.setAdapter(mBidAdapter);
         showBids();
     }
@@ -73,5 +73,9 @@ public class ViewBidsActivity extends AppCompatActivity implements BidAdapter.On
     @Override
     public void onViewClick(int position) {
 
+    }
+
+    @Override
+    public void onDeleteClick(int position) {
     }
 }

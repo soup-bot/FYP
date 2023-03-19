@@ -34,7 +34,6 @@ public class BiddingActivity extends AppCompatActivity {
                 "Details: " + listing.getDetails() + "\n" +
                 "Contact: " + listing.getContact();
         listingDetails.setText(detailsText);
-
         biddername = findViewById(R.id.biddername);
         biddercontact = findViewById(R.id.biddercontact);
 
@@ -55,11 +54,21 @@ public class BiddingActivity extends AppCompatActivity {
                     String bidderContact = biddercontact.getText().toString();
                     if (!TextUtils.isEmpty(bidderName) && !TextUtils.isEmpty(bidderContact)) {
                         uid = currentUser.getUid();
-                        Bid bid = new Bid(bidderName, bidderContact, bidAmount, uid);
+                        Log.d("ListingID", listing.getListingID());
+                       // Bid bid = new Bid(bidderName, bidderContact, bidAmount, uid, listing.getListingID());
                         String url = "https://hirehero-386df-default-rtdb.asia-southeast1.firebasedatabase.app";
-                        DatabaseReference listingRef = FirebaseDatabase.getInstance(url).getReference("Listings").child(listing.getListingID());
-                        DatabaseReference bidRef = listingRef.child("bids").push();
-                        bidRef.setValue(bid);
+                       // DatabaseReference listingRef = FirebaseDatabase.getInstance(url).getReference("Listings").child(listing.getListingID());
+                       // DatabaseReference bidRef = listingRef.child("bids").push();
+                       // bidRef.setValue(bid);
+                        DatabaseReference bidsRef = FirebaseDatabase.getInstance(url).getReference("Listings").child(listing.getListingID()).child("bids");
+                        String bidId = bidsRef.push().getKey();
+                        Log.e("bidID", "BID ID:" +bidId);
+
+                        // Create a Bid object with the bid data
+                        Bid bid = new Bid(bidderName, bidderContact, bidAmount, uid, listing.getListingID(), bidId);
+
+                        // Store the Bid object in the database
+                        bidsRef.child(bidId).setValue(bid);
                         Toast.makeText(BiddingActivity.this, "Bid submitted!", Toast.LENGTH_SHORT).show();
                         finish();
                     } else {

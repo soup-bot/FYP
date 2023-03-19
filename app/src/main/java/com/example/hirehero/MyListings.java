@@ -103,4 +103,9 @@ public class MyListings extends AppCompatActivity implements MyAdapter.OnDeleteC
         intent.putExtra("listingId", listing.getListingID());
         startActivity(intent);
     }
+
+    @Override
+    public void onDeleteClick(int position) {
+
+    }
 }
