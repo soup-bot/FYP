@@ -7,6 +7,16 @@ public class Bid implements Serializable {
     private int bidAmount;
     private String uid;
 
+    public Listing getListing() {
+        return listing;
+    }
+
+    public void setListing(Listing listing) {
+        this.listing = listing;
+    }
+
+    private Listing listing;
+
     public String getBidid() {
         return bidid;
     }

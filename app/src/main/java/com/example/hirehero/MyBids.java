@@ -65,10 +65,24 @@ public class MyBids extends AppCompatActivity implements BidAdapter.OnViewClickL
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             for (DataSnapshot bidSnapshot : snapshot.getChildren()) {
                                 Bid bid = bidSnapshot.getValue(Bid.class);
-                                mBidsList.add(bid);
-                            }
-                            mBidAdapter.notifyDataSetChanged();
+                                String listingId = bid.getListingid();
+                                DatabaseReference listingRef = FirebaseDatabase.getInstance(url).getReference("Listings").child(listingId);
+                                listingRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        //get the listing which corresponds to the bid, and store it in the bid object with bid.setListing(listing)
+                                        Listing listing = snapshot.getValue(Listing.class);
+                                        bid.setListing(listing);
+                                        mBidsList.add(bid);
+                                        mBidAdapter.notifyDataSetChanged();
+                                    }
 
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                        Toast.makeText(MyBids.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
                         }
 
                         @Override
@@ -85,7 +99,6 @@ public class MyBids extends AppCompatActivity implements BidAdapter.OnViewClickL
                 Toast.makeText(MyBids.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     @Override
