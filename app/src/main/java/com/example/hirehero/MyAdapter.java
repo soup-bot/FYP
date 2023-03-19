@@ -9,9 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -83,9 +87,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
                 int clickedPosition = holder.getAdapterPosition();
                 if (clickedPosition != RecyclerView.NO_POSITION) {
                     Listing clickedListing = list.get(clickedPosition);
-                    Intent intent = new Intent(context, BiddingActivity.class);
-                    intent.putExtra("listing", clickedListing);
-                    context.startActivity(intent);
+                    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                    if (clickedListing.getUserID().equals(currentUser.getUid())) {
+                        //if user clicks their own listing, do nothing
+                    } else {
+                        // Otherwise, start the biddingactivity
+                        Intent intent = new Intent(context, BiddingActivity.class);
+                        intent.putExtra("listing", clickedListing);
+                        context.startActivity(intent);
+                    }
                 }
             }
         });
