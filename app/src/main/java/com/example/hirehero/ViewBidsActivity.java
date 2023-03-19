@@ -32,6 +32,7 @@ public class ViewBidsActivity extends AppCompatActivity implements BidAdapter.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_view_bids);
         mRecyclerView = findViewById(R.id.bids);
         mListingId = getIntent().getStringExtra("listingId");
