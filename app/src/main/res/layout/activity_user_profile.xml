@@ -10,13 +10,12 @@
 
     <TextView
         android:id="@+id/dashboardtext"
-        android:layout_width="264dp"
-        android:layout_height="71dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:fontFamily="sans-serif-black"
-        android:text="My Dashboard"
         android:textColor="@color/grey"
-        android:textSize="40sp"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"

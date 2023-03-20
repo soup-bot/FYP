@@ -34,6 +34,7 @@ public class BiddingActivity extends AppCompatActivity {
                 "Details: " + listing.getDetails() + "\n" +
                 "Contact: " + listing.getContact();
         listingDetails.setText(detailsText);
+
         biddername = findViewById(R.id.biddername);
         biddercontact = findViewById(R.id.biddercontact);
 
