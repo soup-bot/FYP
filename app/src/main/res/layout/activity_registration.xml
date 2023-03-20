@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/bg"
     tools:context=".MainActivity">
 
     <com.airbnb.lottie.LottieAnimationView
@@ -19,18 +19,6 @@
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/getstarted" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/registrationpageanim"
-        android:layout_width="426dp"
-        android:layout_height="238dp"
-        android:layout_marginTop="140dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/frontpageanim" />
 
     <TextView
         android:id="@+id/hirehero2"
@@ -74,8 +62,8 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/orange"
-        android:textColorHint="@color/orange"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,8 +83,8 @@
         android:hint="Name"
         android:inputType="textPersonName"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/orange"
-        android:textColorHint="@color/orange"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"

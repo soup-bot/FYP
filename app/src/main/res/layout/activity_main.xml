@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/bg"
     tools:context=".MainActivity">
 
     <com.airbnb.lottie.LottieAnimationView
@@ -19,19 +19,6 @@
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/getstarted" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/frontpageanim"
-        android:layout_width="426dp"
-        android:layout_height="238dp"
-        android:layout_marginTop="140dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/frontpageanim" />
-
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
@@ -39,6 +26,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="402dp"
         android:background="@drawable/box"
+        android:backgroundTint="@color/white"
         android:drawableLeft="@drawable/ic_baseline_email_24"
         android:drawablePadding="10dp"
         android:padding="10dp"
@@ -47,7 +35,7 @@
         android:inputType="textEmailAddress"
         android:text="ib.ameer1999@gmail.com"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/orange"
+        android:textColor="@color/white"
         android:textColorHint="#83FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"

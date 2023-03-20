@@ -69,9 +69,8 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
         String detailsText = "";
         if (currentBid.getListing() != null) {
             detailsText = "Service: " + currentBid.getListing().getService() + "\n" +
-                    "Price: " + currentBid.getListing().getPrice() + "\n" +
                     "Details: " + currentBid.getListing().getDetails() + "\n" +
-                    "Contact: " + currentBid.getListing().getContact();
+                    "Contact: " + currentBid.getListing().getContact() + "\n\n" + "$" + currentBid.getListing().getPrice() ;
         }
         holder.listingdetails.setText(detailsText);
 
