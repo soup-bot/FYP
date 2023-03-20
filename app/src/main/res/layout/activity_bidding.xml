@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg2"
     tools:context=".BiddingActivity">
 
     <TextView
@@ -13,7 +14,7 @@
         android:padding="16dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/bid_amount"
+        app:layout_constraintBottom_toTopOf="@+id/biddername"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,50 +23,53 @@
 
     <EditText
         android:id="@+id/biddername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="212dp"
-        android:hint="Enter your name"
-        app:layout_constraintBottom_toTopOf="@+id/submit_bid"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/inputbox"
+        android:gravity="center"
+        android:hint="Name"
+        app:layout_constraintBottom_toTopOf="@+id/biddercontact"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/biddercontact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="108dp"
-        android:hint="Enter your contact no"
-        app:layout_constraintBottom_toTopOf="@+id/submit_bid"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/inputbox"
+        android:gravity="center"
+        android:hint="Contact No"
+        app:layout_constraintBottom_toTopOf="@+id/bid_amount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/biddername"
-        app:layout_constraintVertical_bias="0.44" />
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/bid_amount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:hint="Enter your bid amount"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/inputbox"
+        android:gravity="center"
+        android:hint="Bid Amount"
         android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/submit_bid"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/biddercontact"
-        app:layout_constraintVertical_bias="0.687" />
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/submit_bid"
         android:layout_width="264dp"
         android:layout_height="37dp"
-        android:layout_marginBottom="196dp"
+        android:layout_marginBottom="128dp"
         android:text="Submit bid"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
