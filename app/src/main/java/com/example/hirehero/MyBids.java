@@ -5,8 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -21,19 +25,19 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MyBids extends AppCompatActivity implements BidAdapter.OnViewClickListener, BidAdapter.OnDeleteClickListener {
+public class MyBids extends AppCompatActivity implements BidAdapter.OnViewClickListener, BidAdapter.OnDeleteClickListener, View.OnClickListener {
     private RecyclerView mRecyclerView;
     private ArrayList<Bid> mBidsList;
     private BidAdapter mBidAdapter;
     private DatabaseReference mDatabase;
     private String mListingId;
     private FirebaseAuth mAuth;
+    private ImageButton homebutton;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_my_bids);
         mRecyclerView = findViewById(R.id.mybids);
 
@@ -43,6 +47,10 @@ public class MyBids extends AppCompatActivity implements BidAdapter.OnViewClickL
         mBidsList = new ArrayList<>();
         mBidAdapter = new BidAdapter(mBidsList, this, this);
         mRecyclerView.setAdapter(mBidAdapter);
+
+        homebutton = (ImageButton) findViewById(R.id.homeButton);
+        homebutton.setOnClickListener(this::onClick);
+
         showBids();
 
     }
@@ -150,5 +158,16 @@ public class MyBids extends AppCompatActivity implements BidAdapter.OnViewClickL
                 Log.e("onDeleteClick", "Failed to query bids node: " + error.getMessage());
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.homeButton:
+                startActivity(new Intent(this,UserProfile.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                break;
+        }
+
     }
 }

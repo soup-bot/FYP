@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.view.View.OnClickListener;
@@ -27,20 +28,19 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MyListings extends AppCompatActivity implements MyAdapter.OnDeleteClickListener, BidAdapter.OnViewClickListener{
+public class MyListings extends AppCompatActivity implements MyAdapter.OnDeleteClickListener, BidAdapter.OnViewClickListener, View.OnClickListener{
 
     RecyclerView recyclerView2;
     DatabaseReference database;
     MyAdapter myAdapter;
     ArrayList<Listing> list;
-
+    private ImageButton homebutton;
 
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_my_listings);
         String url = "https://hirehero-386df-default-rtdb.asia-southeast1.firebasedatabase.app";
         recyclerView2 = findViewById(R.id.mylisting);
@@ -50,6 +50,9 @@ public class MyListings extends AppCompatActivity implements MyAdapter.OnDeleteC
         list = new ArrayList<>();
         myAdapter = new MyAdapter(this, list,true,this,this);
         recyclerView2.setAdapter(myAdapter);
+
+        homebutton = (ImageButton) findViewById(R.id.homeButton);
+        homebutton.setOnClickListener(this::onClick);
 
 
         showCurrentUserListings();
@@ -107,5 +110,15 @@ public class MyListings extends AppCompatActivity implements MyAdapter.OnDeleteC
     @Override
     public void onDeleteClick(int position) {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.homeButton:
+                startActivity(new Intent(this,UserProfile.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                break;
+        }
     }
 }

@@ -35,7 +35,6 @@ public class servicelist extends AppCompatActivity implements MyAdapter.OnDelete
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_servicelist);
         String url = "https://hirehero-386df-default-rtdb.asia-southeast1.firebasedatabase.app";
         recyclerView = findViewById(R.id.servicelist);

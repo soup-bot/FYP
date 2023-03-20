@@ -28,7 +28,6 @@ public class ListService extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_profile);
 
         service = findViewById(R.id.service);

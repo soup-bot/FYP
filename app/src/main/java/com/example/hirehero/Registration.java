@@ -33,7 +33,6 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        getSupportActionBar().hide();
         mAuth = FirebaseAuth.getInstance();
         banner = (TextView) findViewById(R.id.hirehero2);
         banner.setOnClickListener(this);

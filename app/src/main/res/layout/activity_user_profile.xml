@@ -7,6 +7,8 @@
     android:background="@drawable/background"
     tools:context=".UserProfile">
 
+
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/profileanim"
         android:layout_width="426dp"
@@ -83,7 +85,7 @@
                     android:paddingTop="30dp"
                     android:text="Bid on services"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -120,7 +122,7 @@
                     android:paddingTop="30dp"
                     android:text="View my list"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -157,7 +159,7 @@
                     android:paddingTop="30dp"
                     android:text="View my bids"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -194,13 +196,26 @@
                     android:paddingTop="30dp"
                     android:text="List a service"
                     android:textColor="@color/black"
-                    android:textSize="20sp" />
+                    android:textSize="18sp" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
 
     </GridLayout>
+
+    <ImageButton
+        android:id="@+id/logoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:contentDescription="Log out"
+        android:background="#00FFB200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_logout_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
