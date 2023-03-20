@@ -114,9 +114,11 @@
 
         </LinearLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/deletebid"
             android:layout_width="match_parent"
+            android:background="@color/black"
+            android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:text="Delete bid" />
 

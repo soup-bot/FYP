@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/grey"
+    android:background="@color/orange"
     android:layout_height="match_parent">
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/servicelist"
-        android:layout_width="385dp"
-        android:layout_height="585dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.481"
@@ -21,28 +22,49 @@
     <EditText
         android:id="@+id/listingsearch"
         android:layout_width="301dp"
-        android:layout_height="51dp"
+        android:layout_height="45dp"
         android:layout_marginStart="24dp"
-        android:background="@drawable/box"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/searchbox"
         android:ems="10"
         android:gravity="center"
         android:hint="Search"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="@color/orange"
-        android:textColorHint="#83FFFFFF"
+        android:textColor="@color/black"
+        android:textColorHint="#83000000"
         app:layout_constraintBottom_toTopOf="@+id/servicelist"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.525" />
 
+
     <ImageView
         android:id="@+id/searchButton"
-        android:layout_width="56dp"
-        android:layout_height="53dp"
-        android:layout_weight="1"
-        app:layout_constraintBottom_toTopOf="@+id/servicelist"
+        android:layout_width="52dp"
+        android:layout_height="47dp"
+        android:layout_alignTop="@+id/listingsearch"
+        android:layout_alignRight="@+id/listingsearch"
+        android:layout_alignBottom="@+id/listingsearch"
+        android:padding="5dp"
+        android:src="@drawable/ic_baseline_search_24"
+        app:layout_constraintBottom_toBottomOf="@+id/listingsearch"
+        app:layout_constraintEnd_toEndOf="@+id/listingsearch"
+        app:layout_constraintTop_toTopOf="@+id/listingsearch"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <ImageButton
+        android:id="@+id/homeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="#00FFB200"
+        android:contentDescription="home button"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/listingsearch"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.538"
-        app:srcCompat="@drawable/search" />
+        app:srcCompat="@drawable/ic_baseline_home_24" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

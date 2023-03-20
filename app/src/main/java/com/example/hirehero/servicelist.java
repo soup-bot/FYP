@@ -6,11 +6,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -22,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class servicelist extends AppCompatActivity implements MyAdapter.OnDeleteClickListener{
+public class servicelist extends AppCompatActivity implements MyAdapter.OnDeleteClickListener, View.OnClickListener {
 
     RecyclerView recyclerView;
     DatabaseReference database;
@@ -30,6 +32,8 @@ public class servicelist extends AppCompatActivity implements MyAdapter.OnDelete
     ArrayList<Listing> list;
     EditText listingsearch;
     ImageView searchButton;
+    private ImageButton homebutton;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -48,6 +52,9 @@ public class servicelist extends AppCompatActivity implements MyAdapter.OnDelete
         searchButton = findViewById(R.id.searchButton);
         MyClickListener myClickListener = new MyClickListener(this, listingsearch, database, list, myAdapter);
         searchButton.setOnClickListener(myClickListener);
+        homebutton = (ImageButton) findViewById(R.id.homeButton);
+        homebutton.setOnClickListener(this);
+
         showAllListings();
     }
 
@@ -78,5 +85,15 @@ public class servicelist extends AppCompatActivity implements MyAdapter.OnDelete
     @Override
     public void onClick(int position) {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.homeButton:
+                startActivity(new Intent(this,UserProfile.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                break;
+        }
     }
 }

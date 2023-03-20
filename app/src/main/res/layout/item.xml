@@ -129,16 +129,20 @@
 
         </LinearLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/viewbids"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@color/grey"
             android:text="VIEW BIDS" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/deleteButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@color/grey"
             android:text="DELETE LISTING" />
 
     </LinearLayout>
