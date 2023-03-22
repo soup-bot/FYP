@@ -33,15 +33,21 @@ public class BiddingActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_bidding);
         Listing listing = (Listing) getIntent().getSerializableExtra("listing");
 
-        TextView listingDetails = findViewById(R.id.listing_details);
-     //   String detailsText = "Service: " + listing.getService() + "\n" +
-      //          "Price: " + listing.getPrice() + "\n" +
-     //           "Details: " + listing.getDetails() + "\n" +
-      //          "Contact: " + listing.getContact();
-        String detailsText = "Service: " + listing.getService() + "\n" +
-                "Details: " + listing.getDetails() + "\n" +
-                "Contact: " + listing.getContact() + "\n\n" + "$" + listing.getPrice() ;
-        listingDetails.setText(detailsText);
+        TextView getservice = findViewById(R.id.listingdisplay1);
+        TextView getdetails = findViewById(R.id.listingdisplay2);
+        TextView getcontact = findViewById(R.id.listingdisplay3);
+        TextView getprice = findViewById(R.id.listingdisplay4);
+
+        String service = listing.getService();
+        String details = listing.getDetails();
+        String contact = listing.getContact();
+        String price = listing.getPrice();
+
+        getservice.setText(service);
+        getdetails.setText(details);
+        getcontact.setText(contact);
+        getprice.setText(price);
+
 
         homebutton = (ImageButton) findViewById(R.id.homeButton);
         homebutton.setOnClickListener(this);
