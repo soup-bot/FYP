@@ -2,12 +2,15 @@ package com.example.hirehero;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,12 +19,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class BiddingActivity extends AppCompatActivity {
+public class BiddingActivity extends AppCompatActivity implements View.OnClickListener{
     EditText biddername, biddercontact;
     String uid;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private ImageButton homebutton;
     FirebaseUser currentUser = mAuth.getCurrentUser();
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,11 +34,17 @@ public class BiddingActivity extends AppCompatActivity {
         Listing listing = (Listing) getIntent().getSerializableExtra("listing");
 
         TextView listingDetails = findViewById(R.id.listing_details);
+     //   String detailsText = "Service: " + listing.getService() + "\n" +
+      //          "Price: " + listing.getPrice() + "\n" +
+     //           "Details: " + listing.getDetails() + "\n" +
+      //          "Contact: " + listing.getContact();
         String detailsText = "Service: " + listing.getService() + "\n" +
-                "Price: " + listing.getPrice() + "\n" +
                 "Details: " + listing.getDetails() + "\n" +
-                "Contact: " + listing.getContact();
+                "Contact: " + listing.getContact() + "\n\n" + "$" + listing.getPrice() ;
         listingDetails.setText(detailsText);
+
+        homebutton = (ImageButton) findViewById(R.id.homeButton);
+        homebutton.setOnClickListener(this);
 
         biddername = findViewById(R.id.biddername);
         biddercontact = findViewById(R.id.biddercontact);
@@ -83,5 +94,15 @@ public class BiddingActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.homeButton:
+                startActivity(new Intent(this,UserProfile.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                break;
+        }
     }
 }
