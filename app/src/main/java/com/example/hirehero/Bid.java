@@ -1,6 +1,6 @@
 package com.example.hirehero;
 import java.io.Serializable;
-//check if fowaof
+//revert
 public class Bid implements Serializable {
     private String bidderName;
     private String bidderContact;
