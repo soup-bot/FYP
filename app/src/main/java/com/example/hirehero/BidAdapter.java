@@ -66,22 +66,20 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
         holder.name.setText(currentBid.getBidderName());
         holder.contact.setText(currentBid.getBidderContact());
         Log.d("UID", "Bidder name = "+ currentBid.getBidderName());
-        String detailsText = "";
-        if (currentBid.getListing() != null) {
-            detailsText = "Service: " + currentBid.getListing().getService() + "\n" +
-                    "Details: " + currentBid.getListing().getDetails() + "\n" +
-                    "Contact: " + currentBid.getListing().getContact() + "\n\n" + "$" + currentBid.getListing().getPrice() ;
-        }
-       // holder.listingdetails.setText(detailsText);
-        String service = currentBid.getListing().getService();
-        String details = currentBid.getListing().getDetails();
-        String contact = currentBid.getListing().getContact();
-        String price = currentBid.getListing().getPrice();
 
-        holder.getservice.setText(service);
-        holder.getdetails.setText(details);
-        holder.getcontact.setText(contact);
-        holder.getprice.setText(price);
+        String service, details, contact, price = "";
+        if (currentBid.getListing() != null){
+            service = currentBid.getListing().getService();
+            details = currentBid.getListing().getDetails();
+            contact = currentBid.getListing().getContact();
+            price = currentBid.getListing().getPrice();
+
+            holder.getservice.setText(service);
+            holder.getdetails.setText(details);
+            holder.getcontact.setText(contact);
+            holder.getprice.setText(price);
+        }
+
 
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
