@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/unsplash3"
     tools:context=".BiddingActivity">
 
     <androidx.cardview.widget.CardView
@@ -32,7 +32,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
+                android:fontFamily="@font/montserratbold"
                 android:paddingLeft="20dp"
                 android:paddingTop="10dp"
                 android:text="Listing you want to bid on:"
@@ -50,6 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="20dp"
+                    android:fontFamily="@font/montserratsemibold"
                     android:text="Service :"
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -60,6 +61,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
+                    android:fontFamily="@font/montserratregular"
                     android:paddingTop="5dp"
                     android:paddingRight="5dp"
                     android:paddingBottom="5dp"
@@ -81,6 +83,7 @@
                     android:layout_height="wrap_content"
                     android:paddingLeft="20dp"
                     android:text="Details :"
+                    android:fontFamily="@font/montserratsemibold"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -91,6 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:paddingRight="5dp"
+                    android:fontFamily="@font/montserratregular"
                     android:paddingBottom="5dp"
                     android:text="Details"
                     android:textColor="@color/black"
@@ -110,6 +114,7 @@
                     android:paddingLeft="20dp"
                     android:text="Contact :"
                     android:textColor="@color/black"
+                    android:fontFamily="@font/montserratsemibold"
                     android:textSize="19sp"
                     android:textStyle="bold" />
 
@@ -120,6 +125,7 @@
                     android:layout_marginLeft="8dp"
                     android:paddingRight="5dp"
                     android:paddingBottom="5dp"
+                    android:fontFamily="@font/montserratregular"
                     android:text="Details"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
@@ -136,7 +142,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-black"
+                    android:fontFamily="@font/montserratbold"
                     android:paddingLeft="20dp"
                     android:text="$"
                     android:textColor="@color/black"
@@ -148,7 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:fontFamily="sans-serif-black"
+                    android:fontFamily="@font/montserratbold"
                     android:paddingTop="8dp"
                     android:paddingRight="5dp"
                     android:paddingBottom="5dp"
@@ -201,6 +207,7 @@
                 android:layout_width="350dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserratregular"
                 android:hint="Name"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -211,6 +218,7 @@
                 android:layout_width="350dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserratregular"
                 android:hint="Contact No"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -222,8 +230,10 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:hint="Bid Amount ($)"
+                android:fontFamily="@font/montserratregular"
                 android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/biddercontact" />
 
@@ -231,8 +241,11 @@
                 android:id="@+id/submit_bid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:backgroundTint="@color/grey"
+                android:layout_marginTop="35dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:background="@drawable/forgotpassbutton"
+                android:fontFamily="@font/montserratbold"
                 android:text="Submit bid"
                 android:textColor="#FFFFFF"
                 android:textSize="15dp"

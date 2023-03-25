@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="0dp"
+        android:background="@color/white"
         android:orientation="vertical"
         android:showDividers="middle">
 
@@ -34,20 +35,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="0dp"
-                android:background="@drawable/gradient"
+                android:background="#00B14F"
                 android:orientation="vertical"
                 android:showDividers="middle">
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-black"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="10dp"
-                    android:text="Listing you want to bid on:"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -61,7 +51,8 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="20dp"
                         android:text="Service :"
-                        android:textColor="@color/black"
+                        android:fontFamily="@font/montserratsemibold"
+                        android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -70,11 +61,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
+                        android:fontFamily="@font/montserratregular"
                         android:paddingTop="5dp"
                         android:paddingRight="5dp"
                         android:paddingBottom="5dp"
                         android:text="Arya"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="19sp" />
 
                 </LinearLayout>
@@ -91,7 +83,8 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="20dp"
                         android:text="Details :"
-                        android:textColor="@color/black"
+                        android:fontFamily="@font/montserratsemibold"
+                        android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -99,11 +92,12 @@
                         android:id="@+id/listingref2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserratregular"
                         android:layout_marginLeft="8dp"
                         android:paddingRight="5dp"
                         android:paddingBottom="5dp"
                         android:text="Details"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="19sp" />
 
                 </LinearLayout>
@@ -119,7 +113,8 @@
                         android:layout_height="wrap_content"
                         android:paddingLeft="20dp"
                         android:text="Contact :"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/montserratsemibold"
                         android:textSize="19sp"
                         android:textStyle="bold" />
 
@@ -128,10 +123,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
+                        android:fontFamily="@font/montserratregular"
                         android:paddingRight="5dp"
                         android:paddingBottom="5dp"
                         android:text="Details"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="20sp" />
 
                 </LinearLayout>
@@ -146,10 +142,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-black"
+                        android:fontFamily="@font/montserratbold"
                         android:paddingLeft="20dp"
                         android:text="$"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="25sp"
                         android:textStyle="bold" />
 
@@ -158,12 +154,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
-                        android:fontFamily="sans-serif-black"
+                        android:fontFamily="@font/montserratbold"
                         android:paddingTop="8dp"
                         android:paddingRight="5dp"
                         android:paddingBottom="5dp"
                         android:text="Stark"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="25sp" />
 
                 </LinearLayout>
@@ -182,7 +178,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-black"
+                android:fontFamily="@font/montserratbold"
                 android:paddingLeft="20dp"
                 android:text="$"
                 android:textColor="@color/black"
@@ -194,7 +190,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:fontFamily="sans-serif-black"
+                android:fontFamily="@font/montserratbold"
                 android:paddingTop="5dp"
                 android:paddingRight="5dp"
                 android:paddingBottom="5dp"
@@ -216,6 +212,7 @@
                 android:paddingLeft="20dp"
                 android:text="Name:"
                 android:textColor="@color/black"
+                android:fontFamily="@font/montserratsemibold"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -226,6 +223,7 @@
                 android:layout_marginLeft="8dp"
                 android:paddingRight="5dp"
                 android:paddingBottom="5dp"
+                android:fontFamily="@font/montserratregular"
                 android:text="Stark"
                 android:textColor="@color/black"
                 android:textSize="19sp" />
@@ -245,6 +243,7 @@
                 android:paddingLeft="20dp"
                 android:text="Contact:"
                 android:textColor="@color/black"
+                android:fontFamily="@font/montserratsemibold"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -255,6 +254,7 @@
                 android:layout_marginLeft="8dp"
                 android:paddingRight="5dp"
                 android:paddingBottom="5dp"
+                android:fontFamily="@font/montserratregular"
                 android:text="Details"
                 android:textColor="@color/black"
                 android:textSize="19sp" />
@@ -266,6 +266,7 @@
             android:layout_width="match_parent"
             android:background="@color/black"
             android:textColor="@color/white"
+            android:fontFamily="@font/montserratbold"
             android:layout_height="wrap_content"
             android:text="Delete bid" />
 

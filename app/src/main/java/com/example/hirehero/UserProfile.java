@@ -94,8 +94,11 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.logoutButton:
                 mFirebaseAuth.signOut();
-                startActivity(new Intent(this, MainActivity.class));
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                finishAffinity();
                 break;
 
         }
