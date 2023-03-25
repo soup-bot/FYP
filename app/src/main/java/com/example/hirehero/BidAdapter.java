@@ -2,8 +2,7 @@ package com.example.hirehero;
 
 
 import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,12 +11,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -27,8 +25,9 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
     private OnViewClickListener mListener;
     private OnDeleteClickListener mDeleteListener;
     private Listing listing;
-    private Bid bid;
 
+    private Bid bid;
+    private int tempPos;
     public interface OnViewClickListener {
         void onViewClick(int position);
 
@@ -62,6 +61,7 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Bid currentBid = mBidsList.get(position);
+        tempPos = position;
         holder.amount.setText(String.valueOf(currentBid.getBidAmount()));
         holder.name.setText(currentBid.getBidderName());
         holder.contact.setText(currentBid.getBidderContact());
@@ -72,14 +72,22 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
                     "Details: " + currentBid.getListing().getDetails() + "\n" +
                     "Contact: " + currentBid.getListing().getContact() + "\n\n" + "$" + currentBid.getListing().getPrice() ;
         }
-        holder.listingdetails.setText(detailsText);
+       // holder.listingdetails.setText(detailsText);
+        String service = currentBid.getListing().getService();
+        String details = currentBid.getListing().getDetails();
+        String contact = currentBid.getListing().getContact();
+        String price = currentBid.getListing().getPrice();
 
+        holder.getservice.setText(service);
+        holder.getdetails.setText(details);
+        holder.getcontact.setText(contact);
+        holder.getprice.setText(price);
 
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentBid.getUid().equals(currentUser.getUid())) {
             holder.deleteButton.setVisibility(View.VISIBLE);
-            holder.listingdetails.setVisibility(View.VISIBLE);
+            holder.cardView.setVisibility(View.VISIBLE);
             holder.deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -90,7 +98,7 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
             });
         } else {
             holder.deleteButton.setVisibility(View.GONE);
-            holder.listingdetails.setVisibility(View.GONE);
+            holder.cardView.setVisibility(View.GONE);
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -115,14 +123,26 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
         public TextView contact;
         public Button deleteButton;
         public TextView listingdetails;
+        public CardView cardView;
+        public TextView getservice, getdetails, getcontact, getprice;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            Bid currentBid = mBidsList.get(tempPos);
             amount = itemView.findViewById(R.id.tvservice2);
             name = itemView.findViewById(R.id.tvprice2);
             contact = itemView.findViewById(R.id.tvdetails2);
             deleteButton = itemView.findViewById(R.id.deletebid);
-            listingdetails = itemView.findViewById(R.id.listingdetails);
+            cardView = itemView.findViewById(R.id.listingcardref);
+
+            getservice = itemView.findViewById(R.id.listingref1);
+            getdetails = itemView.findViewById(R.id.listingref2);
+            getcontact = itemView.findViewById(R.id.listingref3);
+            getprice = itemView.findViewById(R.id.listingref4);
+           // listingdetails = itemView.findViewById(R.id.listingdetails);
+
+
+
 
         }
 
