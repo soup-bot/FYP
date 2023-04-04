@@ -63,6 +63,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
         if (showDeleteButton) {
             holder.deleteButton.setVisibility(View.VISIBLE);
             holder.viewbids.setVisibility(View.VISIBLE);
+            holder.clicktobid.setVisibility(View.GONE);
             holder.deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -108,7 +109,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView service, price, details, contact;
+        TextView service, price, details, contact, clicktobid;
         Button deleteButton, viewbids;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -119,6 +120,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
             contact = itemView.findViewById(R.id.tvcontact);
             deleteButton = itemView.findViewById(R.id.deleteButton);
             viewbids = itemView.findViewById(R.id.viewbids);
+            clicktobid = itemView.findViewById(R.id.clicktobid);
 
         }
     }

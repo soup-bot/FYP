@@ -140,7 +140,22 @@
                 android:textColor="@color/black"
                 android:textSize="25sp" />
 
+
         </LinearLayout>
+        <TextView
+            android:id="@+id/clicktobid"
+            android:layout_width="259dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/montserratbold"
+            android:gravity="right"
+            android:paddingTop="8dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:text="CLICK TO BID"
+            android:textColor="#4CAF50"
+            android:textSize="15sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/viewbids"
