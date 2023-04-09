@@ -66,22 +66,30 @@ public class BiddingActivity extends AppCompatActivity implements View.OnClickLi
                 }
                 EditText bidAmountEditText = findViewById(R.id.bid_amount);
                 String bidAmountString = bidAmountEditText.getText().toString();
+
                 if (!TextUtils.isEmpty(bidAmountString)) {
-                    int bidAmount = Integer.parseInt(bidAmountString);
+                    int bidAmount = (int) Long.parseLong(bidAmountString);
                     String bidderName = biddername.getText().toString();
                     String bidderContact = biddercontact.getText().toString();
                     if (!TextUtils.isEmpty(bidderName) && !TextUtils.isEmpty(bidderContact)) {
+                        if (bidderName.length() > 20) {
+                            Toast.makeText(BiddingActivity.this, "Bidder name should not exceed 20 characters", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        if (bidderContact.length() > 15) {
+                            Toast.makeText(BiddingActivity.this, "Bidder contact should not exceed 15 characters", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        if (bidAmountString.length() > 11) {
+                            Toast.makeText(BiddingActivity.this, "Bid amount should not exceed 11 characters", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         uid = currentUser.getUid();
                         Log.d("ListingID", listing.getListingID());
-                       // Bid bid = new Bid(bidderName, bidderContact, bidAmount, uid, listing.getListingID());
                         String url = "https://hirehero-386df-default-rtdb.asia-southeast1.firebasedatabase.app";
-                       // DatabaseReference listingRef = FirebaseDatabase.getInstance(url).getReference("Listings").child(listing.getListingID());
-                       // DatabaseReference bidRef = listingRef.child("bids").push();
-                       // bidRef.setValue(bid);
                         DatabaseReference bidsRef = FirebaseDatabase.getInstance(url).getReference("Listings").child(listing.getListingID()).child("bids");
                         String bidId = bidsRef.push().getKey();
                         Log.e("bidID", "BID ID:" +bidId);
-
                         // Create a Bid object with the bid data
                         Bid bid = new Bid(bidderName, bidderContact, bidAmount, uid, listing.getListingID(), bidId);
 

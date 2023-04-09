@@ -157,23 +157,38 @@
             android:textColor="#4CAF50"
             android:textSize="15sp" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/viewbids"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserratbold"
-            android:textColor="@color/white"
-            android:background="@color/grey"
-            android:text="VIEW BIDS" />
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:orientation="horizontal">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/deleteButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:fontFamily="@font/montserratbold"
-            android:background="@color/grey"
-            android:text="DELETE LISTING" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/viewbids"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:textSize="12sp"
+                android:background="@drawable/rounded_button"
+                android:fontFamily="@font/montserratbold"
+                android:text="VIEW BIDS"
+                android:textColor="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/deleteButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserratbold"
+                android:background="@drawable/rounded_button2"
+                android:text="DELETE LISTING" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

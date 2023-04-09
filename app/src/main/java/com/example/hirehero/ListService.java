@@ -68,6 +68,24 @@ public class ListService extends AppCompatActivity implements View.OnClickListen
         String userId = mAuth.getCurrentUser().getUid();
         String listingId = mDatabase.child("Listings").child(userId).push().getKey();
 
+        if (serviceInput.length() > 20) {
+            Toast.makeText(this, "Service name should not exceed 20 characters", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (detailsInput.length() > 150) {
+            Toast.makeText(this, "Details should not exceed 150 characters", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (priceInput.length() > 11) {
+            Toast.makeText(this, "Price should not exceed 20 characters", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (contactInput.length() > 15) {
+            Toast.makeText(this, "Contact number should not exceed 150 characters", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if (TextUtils.isEmpty(serviceInput) || TextUtils.isEmpty(priceInput) || TextUtils.isEmpty(contactInput)) {
             Toast.makeText(ListService.this, "Please enter a service, price and contact", Toast.LENGTH_LONG).show();
             return;

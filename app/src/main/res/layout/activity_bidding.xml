@@ -235,6 +235,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/montserratregular"
                 android:hint="Contact No"
+                android:inputType="phone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/biddername" />
@@ -248,7 +249,6 @@
                 android:fontFamily="@font/montserratregular"
                 android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
-
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/biddercontact" />
 
