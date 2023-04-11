@@ -40,23 +40,20 @@
         app:layout_constraintTop_toBottomOf="@+id/contact"
         app:layout_constraintVertical_bias="1.0" />
 
-    <EditText
+    <Spinner
         android:id="@+id/service"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="100dp"
         android:background="@drawable/inputbox"
-        android:ems="10"
         android:fontFamily="@font/montserratsemibold"
-        android:gravity="center"
-        android:hint="Service"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/black"
         android:textColorHint="#83000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <EditText
         android:id="@+id/details"

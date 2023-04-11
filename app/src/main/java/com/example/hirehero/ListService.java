@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ListService extends AppCompatActivity implements View.OnClickListener {
     private TextView username;
-    private EditText service, price, contact, details;
+    private EditText price, contact, details;
+    private Spinner service;
     private Button submitListingButton;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
@@ -30,10 +33,11 @@ public class ListService extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        service = findViewById(R.id.service);
+       // service = findViewById(R.id.service);
         price = findViewById(R.id.price);
         details = findViewById(R.id.details);
         contact = findViewById(R.id.contact);
+        service = findViewById(R.id.service);
 
         submitListingButton = findViewById(R.id.submitListingButton);
         submitListingButton.setOnClickListener(this);
@@ -48,6 +52,12 @@ public class ListService extends AppCompatActivity implements View.OnClickListen
         String test = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Log.d("MyApp", "UID = " + test);
 
+        String[] serviceTags = {"Select Service", "Cleaning", "Painting", "Plumbing", "Electrical", "Landscaping", "Carpentry", "Moving", "Roofing", "Flooring", "HVAC", "Pest Control", "Pool Maintenance", "Handyman", "Window Cleaning"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinneritem, serviceTags);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        service.setAdapter(adapter);
+
+
     }
 
     @Override
@@ -61,7 +71,7 @@ public class ListService extends AppCompatActivity implements View.OnClickListen
     }
 
     private void submitListing() {
-        String serviceInput = service.getText().toString().toLowerCase();
+        String serviceInput = service.getSelectedItem().toString().toLowerCase();
         String priceInput = price.getText().toString();
         String detailsInput = details.getText().toString().toLowerCase();
         String contactInput = contact.getText().toString();
@@ -85,8 +95,8 @@ public class ListService extends AppCompatActivity implements View.OnClickListen
             Toast.makeText(this, "Contact number should not exceed 150 characters", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        if (TextUtils.isEmpty(serviceInput) || TextUtils.isEmpty(priceInput) || TextUtils.isEmpty(contactInput)) {
+        Log.d("e",serviceInput);
+        if (serviceInput.equals("select service") || TextUtils.isEmpty(priceInput) || TextUtils.isEmpty(contactInput)) {
             Toast.makeText(ListService.this, "Please enter a service, price and contact", Toast.LENGTH_LONG).show();
             return;
         }
