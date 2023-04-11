@@ -179,14 +179,17 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/deleteButton"
-                android:layout_width="0dp"
+                android:layout_width="45dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="12sp"
-                android:textColor="@color/white"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/ic_baseline_delete_24"
                 android:fontFamily="@font/montserratbold"
-                android:background="@drawable/rounded_button2"
-                android:text="DELETE LISTING" />
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textColor="@color/white"
+                />
 
         </LinearLayout>
 
