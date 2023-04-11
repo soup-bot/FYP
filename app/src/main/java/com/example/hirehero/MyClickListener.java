@@ -3,6 +3,7 @@ package com.example.hirehero;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 
@@ -16,12 +17,12 @@ import java.util.ArrayList;
 
 public class MyClickListener implements View.OnClickListener {
     private servicelist activity;
-    private EditText listingsearch;
+    private Spinner listingsearch;
     private DatabaseReference database;
     private ArrayList<Listing> list;
     private MyAdapter myAdapter;
 
-    public MyClickListener(servicelist activity, EditText listingsearch, DatabaseReference database, ArrayList<Listing> list, MyAdapter myAdapter) {
+    public MyClickListener(servicelist activity, Spinner listingsearch, DatabaseReference database, ArrayList<Listing> list, MyAdapter myAdapter) {
         this.activity = activity;
         this.listingsearch = listingsearch;
         this.database = database;
@@ -31,11 +32,10 @@ public class MyClickListener implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        String searchText = listingsearch.getText().toString().toLowerCase();
+        String searchText = listingsearch.getSelectedItem().toString().toLowerCase();
         switch (view.getId()) {
             case R.id.searchButton:
-                if (TextUtils.isEmpty(searchText)) {
-                    // if search field is empty, display all listings
+                if (searchText.equals("all services")) {
                     showAllListings();
                 } else {
                     // filter listings based on search text

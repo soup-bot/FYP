@@ -10,10 +10,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +32,7 @@ public class servicelist extends AppCompatActivity implements MyAdapter.OnDelete
     DatabaseReference database;
     MyAdapter myAdapter;
     ArrayList<Listing> list;
+    Spinner filterservices;
     EditText listingsearch;
     ImageView searchButton;
     private ImageButton homebutton;
@@ -45,15 +48,21 @@ public class servicelist extends AppCompatActivity implements MyAdapter.OnDelete
         database = FirebaseDatabase.getInstance(url).getReference("Listings");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        listingsearch = findViewById(R.id.listingsearch);
+        //listingsearch = findViewById(R.id.listingsearch);
         list = new ArrayList<>();
         myAdapter = new MyAdapter(this, list,false,null,null);
         recyclerView.setAdapter(myAdapter);
         searchButton = findViewById(R.id.searchButton);
-        MyClickListener myClickListener = new MyClickListener(this, listingsearch, database, list, myAdapter);
+        filterservices = findViewById(R.id.listingsearch);
+        String[] services = {"All Services", "Cleaning", "Painting", "Plumbing", "Electrical", "Landscaping", "Carpentry", "Moving", "Roofing", "Flooring", "HVAC", "Pest Control", "Pool Maintenance", "Handyman", "Window Cleaning"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinneritem, services);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        filterservices.setAdapter(adapter);
+        MyClickListener myClickListener = new MyClickListener(this, filterservices, database, list, myAdapter);
         searchButton.setOnClickListener(myClickListener);
         homebutton = (ImageButton) findViewById(R.id.homeButton);
         homebutton.setOnClickListener(this);
+
 
         showAllListings();
     }
