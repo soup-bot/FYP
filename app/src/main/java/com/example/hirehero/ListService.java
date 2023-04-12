@@ -1,5 +1,6 @@
 package com.example.hirehero;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -16,8 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ListService extends AppCompatActivity implements View.OnClickListener {
     private TextView username;
@@ -33,7 +37,7 @@ public class ListService extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-       // service = findViewById(R.id.service);
+        // service = findViewById(R.id.service);
         price = findViewById(R.id.price);
         details = findViewById(R.id.details);
         contact = findViewById(R.id.contact);
@@ -42,9 +46,9 @@ public class ListService extends AppCompatActivity implements View.OnClickListen
         submitListingButton = findViewById(R.id.submitListingButton);
         submitListingButton.setOnClickListener(this);
 
-
+        String url = "https://hirehero-386df-default-rtdb.asia-southeast1.firebasedatabase.app";
         mAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance(url).getReference();
         String userId = mAuth.getCurrentUser().getUid();
         DatabaseReference userRef = mDatabase.child("Users").child(userId);
 
@@ -71,6 +75,7 @@ public class ListService extends AppCompatActivity implements View.OnClickListen
     }
 
     private void submitListing() {
+        Log.d("ListService", "submitListing() called");
         String serviceInput = service.getSelectedItem().toString().toLowerCase();
         String priceInput = price.getText().toString();
         String detailsInput = details.getText().toString().toLowerCase();
@@ -95,23 +100,42 @@ public class ListService extends AppCompatActivity implements View.OnClickListen
             Toast.makeText(this, "Contact number should not exceed 150 characters", Toast.LENGTH_SHORT).show();
             return;
         }
-        Log.d("e",serviceInput);
+        Log.d("e", serviceInput);
         if (serviceInput.equals("select service") || TextUtils.isEmpty(priceInput) || TextUtils.isEmpty(contactInput)) {
             Toast.makeText(ListService.this, "Please enter a service, price and contact", Toast.LENGTH_LONG).show();
             return;
         }
 
-        Listing newListing = new Listing(serviceInput, priceInput, detailsInput, contactInput, listingId, userId);
-        String url = "https://hirehero-386df-default-rtdb.asia-southeast1.firebasedatabase.app";
-        //FirebaseDatabase.getInstance(url).getReference("Listings").child(userId).child(listingId).setValue(newListing)
-        FirebaseDatabase.getInstance(url).getReference("Listings").child(listingId).setValue(newListing)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(ListService.this, "Listing added successfully", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(ListService.this, "Failed to add listing", Toast.LENGTH_LONG).show();
-                    }
-                });
-      //  FirebaseDatabase.getInstance(url).getReference("Listings").child(listingId).child("bidAmount").setValue(0);
+        DatabaseReference userRef = mDatabase.child("Users").child(userId);
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d("ListService", "onDataChange() called");
+
+                // Retrieve the user's name from the dataSnapshot
+                String userName = dataSnapshot.child("name").getValue(String.class);
+                Log.d("d",userName);
+
+                // Create a new Listing object with the user's name included
+                Listing newListing = new Listing(serviceInput, priceInput, detailsInput, contactInput, listingId, userId, userName);
+
+                // Save the listing to Firebase
+                String url = "https://hirehero-386df-default-rtdb.asia-southeast1.firebasedatabase.app";
+                FirebaseDatabase.getInstance(url).getReference("Listings").child(listingId).setValue(newListing)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(ListService.this, "Listing added successfully", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(ListService.this, "Failed to add listing", Toast.LENGTH_LONG).show();
+                            }
+                        });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle error
+                Log.w("ListService", "loadUserName:onCancelled", databaseError.toException());
+            }
+        });
     }
 }
