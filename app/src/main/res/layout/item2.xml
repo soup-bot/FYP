@@ -38,13 +38,44 @@
                 android:background="#254332"
                 android:orientation="vertical"
                 android:showDividers="middle">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Name :"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/montserratsemibold"
+                        android:paddingLeft="20dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/listingref0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:paddingTop="5dp"
+                        android:fontFamily="@font/montserratregular"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="Arya"
+                        android:textColor="@color/white"
+                        android:textSize="19sp" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingTop="10dp">
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"

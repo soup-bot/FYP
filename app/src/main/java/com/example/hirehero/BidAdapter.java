@@ -67,17 +67,19 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
         holder.contact.setText(currentBid.getBidderContact());
         Log.d("UID", "Bidder name = "+ currentBid.getBidderName());
 
-        String service, details, contact, price = "";
+        String service, details, contact, price, listername = "";
         if (currentBid.getListing() != null){
             service = currentBid.getListing().getService();
             details = currentBid.getListing().getDetails();
             contact = currentBid.getListing().getContact();
             price = currentBid.getListing().getPrice();
+            listername = currentBid.getListing().getUserName();
 
             holder.getservice.setText(service);
             holder.getdetails.setText(details);
             holder.getcontact.setText(contact);
             holder.getprice.setText(price);
+            holder.getname.setText(listername);
         }
 
 
@@ -122,7 +124,7 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
         public Button deleteButton;
         public TextView listingdetails;
         public CardView cardView;
-        public TextView getservice, getdetails, getcontact, getprice;
+        public TextView getservice, getdetails, getcontact, getprice, getname;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -133,6 +135,7 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
             deleteButton = itemView.findViewById(R.id.deletebid);
             cardView = itemView.findViewById(R.id.listingcardref);
 
+            getname = itemView.findViewById(R.id.listingref0);
             getservice = itemView.findViewById(R.id.listingref1);
             getdetails = itemView.findViewById(R.id.listingref2);
             getcontact = itemView.findViewById(R.id.listingref3);
