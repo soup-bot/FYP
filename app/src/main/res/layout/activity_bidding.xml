@@ -218,27 +218,15 @@
             android:paddingBottom="10dp">
 
             <EditText
-                android:id="@+id/biddername"
-                android:layout_width="350dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/montserratregular"
-                android:hint="Name"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
                 android:id="@+id/biddercontact"
                 android:layout_width="350dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
                 android:fontFamily="@font/montserratregular"
                 android:hint="Contact No"
                 android:inputType="phone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/biddername" />
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
             <EditText
                 android:id="@+id/bid_amount"
@@ -272,11 +260,10 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:textSize="15sp"
+                android:paddingBottom="10dp"
                 android:text="YOUR BID"
-                app:layout_constraintBottom_toTopOf="@+id/biddername"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

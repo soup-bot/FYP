@@ -1,5 +1,6 @@
 package com.example.hirehero;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -16,8 +17,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class BiddingActivity extends AppCompatActivity implements View.OnClickListener{
     EditText biddername, biddercontact;
@@ -25,6 +29,8 @@ public class BiddingActivity extends AppCompatActivity implements View.OnClickLi
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private ImageButton homebutton;
     FirebaseUser currentUser = mAuth.getCurrentUser();
+    DatabaseReference mDatabase;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -48,11 +54,11 @@ public class BiddingActivity extends AppCompatActivity implements View.OnClickLi
         getcontact.setText(contact);
         getprice.setText(price);
 
-
+        String url = "https://hirehero-386df-default-rtdb.asia-southeast1.firebasedatabase.app";
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance(url).getReference();
         homebutton = (ImageButton) findViewById(R.id.homeButton);
         homebutton.setOnClickListener(this);
-
-        biddername = findViewById(R.id.biddername);
         biddercontact = findViewById(R.id.biddercontact);
 
         Button submitBidButton = findViewById(R.id.submit_bid);
@@ -64,18 +70,14 @@ public class BiddingActivity extends AppCompatActivity implements View.OnClickLi
                 } else {
                     Log.e("ListingID", "Error retrieving listing ID");
                 }
+
                 EditText bidAmountEditText = findViewById(R.id.bid_amount);
                 String bidAmountString = bidAmountEditText.getText().toString();
 
                 if (!TextUtils.isEmpty(bidAmountString)) {
                     int bidAmount = (int) Long.parseLong(bidAmountString);
-                    String bidderName = biddername.getText().toString();
                     String bidderContact = biddercontact.getText().toString();
-                    if (!TextUtils.isEmpty(bidderName) && !TextUtils.isEmpty(bidderContact)) {
-                        if (bidderName.length() > 20) {
-                            Toast.makeText(BiddingActivity.this, "Bidder name should not exceed 20 characters", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
+                    if (!TextUtils.isEmpty(bidderContact)) {
                         if (bidderContact.length() > 15) {
                             Toast.makeText(BiddingActivity.this, "Bidder contact should not exceed 15 characters", Toast.LENGTH_SHORT).show();
                             return;
@@ -84,31 +86,38 @@ public class BiddingActivity extends AppCompatActivity implements View.OnClickLi
                             Toast.makeText(BiddingActivity.this, "Bid amount should not exceed 11 characters", Toast.LENGTH_SHORT).show();
                             return;
                         }
+
                         uid = currentUser.getUid();
-                        Log.d("ListingID", listing.getListingID());
                         String url = "https://hirehero-386df-default-rtdb.asia-southeast1.firebasedatabase.app";
                         DatabaseReference bidsRef = FirebaseDatabase.getInstance(url).getReference("Listings").child(listing.getListingID()).child("bids");
                         String bidId = bidsRef.push().getKey();
-                        Log.e("bidID", "BID ID:" +bidId);
-                        // Create a Bid object with the bid data
-                        Bid bid = new Bid(bidderName, bidderContact, bidAmount, uid, listing.getListingID(), bidId);
+                        DatabaseReference userRef = mDatabase.child("Users").child(uid);
+                        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                // Retrieve the bidder's name from the dataSnapshot
+                                String bidderName = dataSnapshot.child("name").getValue(String.class);
+                                // Create a Bid object with the bid data
+                                Bid bid = new Bid(bidderName, bidderContact, bidAmount, uid, listing.getListingID(), bidId);
 
-                        // Store the Bid object in the database
-                        bidsRef.child(bidId).setValue(bid);
-                        Toast.makeText(BiddingActivity.this, "Bid submitted!", Toast.LENGTH_SHORT).show();
-                        finish();
-                    } else {
-                        Toast.makeText(BiddingActivity.this, "Please enter your name and contact information", Toast.LENGTH_SHORT).show();
+                                // Store the Bid object in the database
+                                bidsRef.child(bidId).setValue(bid);
+                                Toast.makeText(BiddingActivity.this, "Bid submitted!", Toast.LENGTH_SHORT).show();
+                                finish();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                            }
+                        });
                     }
                 } else {
-                    Toast.makeText(BiddingActivity.this, "Please enter a bid amount", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BiddingActivity.this, "Please enter your name and contact information", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
-
     }
+
 
     @Override
     public void onClick(View view) {
@@ -120,3 +129,4 @@ public class BiddingActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 }
+
