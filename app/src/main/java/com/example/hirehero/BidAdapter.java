@@ -2,6 +2,7 @@ package com.example.hirehero;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -86,6 +87,7 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentBid.getUid().equals(currentUser.getUid())) {
+            holder.doneButton.setVisibility(View.GONE);
             holder.deleteButton.setVisibility(View.VISIBLE);
             holder.cardView.setVisibility(View.VISIBLE);
             holder.deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +101,15 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
         } else {
             holder.deleteButton.setVisibility(View.GONE);
             holder.cardView.setVisibility(View.GONE);
+            holder.doneButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Launch rating activity, passing bidder's ID as an extra
+                    Intent intent = new Intent(v.getContext(), Rating.class);
+                    intent.putExtra("bidderId", currentBid.getUid());
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -121,7 +132,7 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
         public TextView amount;
         public TextView name;
         public TextView contact;
-        public Button deleteButton;
+        public Button deleteButton, doneButton;
         public TextView listingdetails;
         public CardView cardView;
         public TextView getservice, getdetails, getcontact, getprice, getname;
@@ -129,6 +140,7 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             Bid currentBid = mBidsList.get(tempPos);
+            doneButton = itemView.findViewById(R.id.markasdone);
             amount = itemView.findViewById(R.id.tvservice2);
             name = itemView.findViewById(R.id.tvprice2);
             contact = itemView.findViewById(R.id.tvdetails2);
