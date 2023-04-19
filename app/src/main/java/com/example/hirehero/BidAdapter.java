@@ -125,6 +125,7 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
             holder.doneButton.setVisibility(View.GONE);
             holder.deleteButton.setVisibility(View.VISIBLE);
             holder.cardView.setVisibility(View.VISIBLE);
+            holder.rating.setVisibility(View.GONE);
             holder.deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
