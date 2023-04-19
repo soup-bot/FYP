@@ -66,6 +66,8 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         String email = editTextTextEmail.getText().toString().trim();
         String password = editTextTextPassword.getText().toString().trim();
         String name = editTextTextName.getText().toString().trim();
+        float rating = 0;
+        int numOfRatings=0;
 
         if(name.isEmpty()){
             editTextTextName.setError("Name is required");
@@ -99,7 +101,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 .addOnCompleteListener(task -> {
 
                     if(task.isSuccessful()){
-                        User user = new User(name,email);
+                        User user = new User(name,email,rating, numOfRatings);
                         String url = "https://hirehero-386df-default-rtdb.asia-southeast1.firebasedatabase.app";
                         FirebaseDatabase.getInstance(url).getReference("Users")
                                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

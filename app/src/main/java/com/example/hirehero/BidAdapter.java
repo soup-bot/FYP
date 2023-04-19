@@ -17,8 +17,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
 
@@ -65,8 +71,34 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
         tempPos = position;
         holder.amount.setText(String.valueOf(currentBid.getBidAmount()));
         holder.name.setText(currentBid.getBidderName());
+
         holder.contact.setText(currentBid.getBidderContact());
-        Log.d("UID", "Bidder name = "+ currentBid.getBidderName());
+        String url = "https://hirehero-386df-default-rtdb.asia-southeast1.firebasedatabase.app";
+        Log.d("UID", "Bidder UID = "+ currentBid.getUid());
+        DatabaseReference bidderRef = FirebaseDatabase.getInstance(url).getReference().child("Users").child(currentBid.getUid());
+        // Add a listener to the bidder's user node in Firebase to get the current rating
+        bidderRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Object ratingObj = snapshot.child("rating").getValue();
+                    if (ratingObj instanceof String) {
+                        String ratingStr = (String) ratingObj;
+                        float currentRating = Float.parseFloat(ratingStr);
+                        holder.rating.setText(String.format(Locale.getDefault(), "%.1f", currentRating));
+                    } else if (ratingObj instanceof Float) {
+                        float currentRating = (Float) ratingObj;
+                        holder.rating.setText(String.format(Locale.getDefault(), "%.1f", currentRating));
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle database read error
+            }
+        });
+       // Log.d("UID", "Bidder name = "+ currentBid.getBidderName());
 
         String service, details, contact, price, listername = "";
         if (currentBid.getListing() != null){
@@ -81,6 +113,9 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
             holder.getcontact.setText(contact);
             holder.getprice.setText(price);
             holder.getname.setText(listername);
+
+            // Get a reference to the bidder's user node in Firebase
+
         }
 
 
@@ -131,6 +166,7 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
 
         public TextView amount;
         public TextView name;
+        public TextView rating;
         public TextView contact;
         public Button deleteButton, doneButton;
         public TextView listingdetails;
@@ -140,6 +176,7 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             Bid currentBid = mBidsList.get(tempPos);
+            rating = itemView.findViewById(R.id.rating);
             doneButton = itemView.findViewById(R.id.markasdone);
             amount = itemView.findViewById(R.id.tvservice2);
             name = itemView.findViewById(R.id.tvprice2);
