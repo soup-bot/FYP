@@ -76,7 +76,6 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
         String url = "https://hirehero-386df-default-rtdb.asia-southeast1.firebasedatabase.app";
         Log.d("UID", "Bidder UID = "+ currentBid.getUid());
         DatabaseReference bidderRef = FirebaseDatabase.getInstance(url).getReference().child("Users").child(currentBid.getUid());
-        // Add a listener to the bidder's user node in Firebase to get the current rating
         bidderRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -95,10 +94,8 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // Handle database read error
             }
         });
-       // Log.d("UID", "Bidder name = "+ currentBid.getBidderName());
 
         String service, details, contact, price, listername = "";
         if (currentBid.getListing() != null){
@@ -114,7 +111,6 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
             holder.getprice.setText(price);
             holder.getname.setText(listername);
 
-            // Get a reference to the bidder's user node in Firebase
 
         }
 
@@ -140,7 +136,7 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
             holder.doneButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Launch rating activity, passing bidder's ID as an extra
+                    //launch rating activity, passing bidder's ID
                     Intent intent = new Intent(v.getContext(), Rating.class);
                     intent.putExtra("bidderId", currentBid.getUid());
                     v.getContext().startActivity(intent);
@@ -170,7 +166,6 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
         public TextView rating;
         public TextView contact;
         public Button deleteButton, doneButton;
-        public TextView listingdetails;
         public CardView cardView;
         public TextView getservice, getdetails, getcontact, getprice, getname;
 
@@ -190,7 +185,6 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
             getdetails = itemView.findViewById(R.id.listingref2);
             getcontact = itemView.findViewById(R.id.listingref3);
             getprice = itemView.findViewById(R.id.listingref4);
-           // listingdetails = itemView.findViewById(R.id.listingdetails);
 
 
 

@@ -1,6 +1,5 @@
 package com.example.hirehero;
 import java.io.Serializable;
-//revert
 public class Bid implements Serializable {
     private String bidderName;
     private String bidderContact;

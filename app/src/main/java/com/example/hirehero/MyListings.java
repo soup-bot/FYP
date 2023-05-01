@@ -8,15 +8,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Toast;
-import android.view.View.OnClickListener;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -28,11 +23,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MyListings extends AppCompatActivity implements MyAdapter.OnDeleteClickListener, BidAdapter.OnViewClickListener, View.OnClickListener{
+public class MyListings extends AppCompatActivity implements ServiceAdapter.OnDeleteClickListener, BidAdapter.OnViewClickListener, View.OnClickListener{
 
     RecyclerView recyclerView2;
     DatabaseReference database;
-    MyAdapter myAdapter;
+    ServiceAdapter myAdapter;
     ArrayList<Listing> list;
     private ImageButton homebutton;
 
@@ -48,7 +43,7 @@ public class MyListings extends AppCompatActivity implements MyAdapter.OnDeleteC
         recyclerView2.setHasFixedSize(true);
         recyclerView2.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
-        myAdapter = new MyAdapter(this, list,true,this,this);
+        myAdapter = new ServiceAdapter(this, list,true,this,this);
         recyclerView2.setAdapter(myAdapter);
 
         homebutton = (ImageButton) findViewById(R.id.homeButton);

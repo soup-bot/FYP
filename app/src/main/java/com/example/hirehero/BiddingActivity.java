@@ -95,12 +95,12 @@ public class BiddingActivity extends AppCompatActivity implements View.OnClickLi
                         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                // Retrieve the bidder's name from the dataSnapshot
+                                //get the bidder's name from the dataSnapshot
                                 String bidderName = dataSnapshot.child("name").getValue(String.class);
-                                // Create a Bid object with the bid data
+                                //create a bid object with the data
                                 Bid bid = new Bid(bidderName, bidderContact, bidAmount, uid, listing.getListingID(), bidId);
 
-                                // Store the Bid object in the database
+                                //store the bid object in the database
                                 bidsRef.child(bidId).setValue(bid);
                                 Toast.makeText(BiddingActivity.this, "Bid submitted!", Toast.LENGTH_SHORT).show();
                                 finish();

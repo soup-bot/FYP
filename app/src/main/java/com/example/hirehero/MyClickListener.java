@@ -1,8 +1,6 @@
 package com.example.hirehero;
 
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -20,9 +18,9 @@ public class MyClickListener implements View.OnClickListener {
     private Spinner listingsearch;
     private DatabaseReference database;
     private ArrayList<Listing> list;
-    private MyAdapter myAdapter;
+    private ServiceAdapter myAdapter;
 
-    public MyClickListener(servicelist activity, Spinner listingsearch, DatabaseReference database, ArrayList<Listing> list, MyAdapter myAdapter) {
+    public MyClickListener(servicelist activity, Spinner listingsearch, DatabaseReference database, ArrayList<Listing> list, ServiceAdapter myAdapter) {
         this.activity = activity;
         this.listingsearch = listingsearch;
         this.database = database;
