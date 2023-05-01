@@ -110,16 +110,15 @@ public class ListService extends AppCompatActivity implements View.OnClickListen
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d("ListService", "onDataChange() called");
 
-                // Retrieve the user's name from the dataSnapshot
+                // get user's name from the dataSnapshot
                 String userName = dataSnapshot.child("name").getValue(String.class);
                 Log.d("d",userName);
 
-                // Create a new Listing object with the user's name included
+                // create a new listing object
                 Listing newListing = new Listing(serviceInput, priceInput, detailsInput, contactInput, listingId, userId, userName);
 
-                // Save the listing to Firebase
+                // save the listing to firebase
                 String url = "https://hirehero-386df-default-rtdb.asia-southeast1.firebasedatabase.app";
                 FirebaseDatabase.getInstance(url).getReference("Listings").child(listingId).setValue(newListing)
                         .addOnCompleteListener(task -> {
@@ -133,7 +132,6 @@ public class ListService extends AppCompatActivity implements View.OnClickListen
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle error
                 Log.w("ListService", "loadUserName:onCancelled", databaseError.toException());
             }
         });
