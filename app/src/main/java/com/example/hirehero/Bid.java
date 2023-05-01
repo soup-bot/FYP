@@ -1,3 +1,5 @@
+//Object for bids
+
 package com.example.hirehero;
 import java.io.Serializable;
 public class Bid implements Serializable {

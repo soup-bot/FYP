@@ -1,3 +1,5 @@
+//helper class for searching/filtering on the bid on services page
+
 package com.example.hirehero;
 
 import android.view.View;
@@ -59,6 +61,7 @@ public class MyClickListener implements View.OnClickListener {
                 break;
         }
     }
+    //method to show all listings in a list
     private void showAllListings(){
         list.clear();
         database.addValueEventListener(new ValueEventListener() {

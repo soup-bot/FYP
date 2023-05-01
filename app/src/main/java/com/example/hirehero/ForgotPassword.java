@@ -1,3 +1,5 @@
+//this class handles all the reset password page logic
+
 package com.example.hirehero;
 
 import androidx.annotation.NonNull;

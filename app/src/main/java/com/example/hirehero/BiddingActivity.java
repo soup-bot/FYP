@@ -1,3 +1,5 @@
+//this class handles bidding on a service on the bid on services page
+
 package com.example.hirehero;
 
 import androidx.annotation.NonNull;
@@ -74,6 +76,7 @@ public class BiddingActivity extends AppCompatActivity implements View.OnClickLi
                 EditText bidAmountEditText = findViewById(R.id.bid_amount);
                 String bidAmountString = bidAmountEditText.getText().toString();
 
+                //check if valid contact and bid amount
                 if (!TextUtils.isEmpty(bidAmountString)) {
                     int bidAmount = (int) Long.parseLong(bidAmountString);
                     String bidderContact = biddercontact.getText().toString();
@@ -87,9 +90,11 @@ public class BiddingActivity extends AppCompatActivity implements View.OnClickLi
                             return;
                         }
 
+
                         uid = currentUser.getUid();
                         String url = "https://hirehero-386df-default-rtdb.asia-southeast1.firebasedatabase.app";
                         DatabaseReference bidsRef = FirebaseDatabase.getInstance(url).getReference("Listings").child(listing.getListingID()).child("bids");
+                        //generate random key for bidId
                         String bidId = bidsRef.push().getKey();
                         DatabaseReference userRef = mDatabase.child("Users").child(uid);
                         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -123,6 +128,7 @@ public class BiddingActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.homeButton:
+                //go to user profile when home button pressed
                 startActivity(new Intent(this,UserProfile.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 break;

@@ -1,3 +1,5 @@
+//Class to display all the listings on the bid on services page
+
 package com.example.hirehero;
 
 import androidx.annotation.NonNull;
@@ -45,7 +47,6 @@ public class servicelist extends AppCompatActivity implements ServiceAdapter.OnD
         database = FirebaseDatabase.getInstance(url).getReference("Listings");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //listingsearch = findViewById(R.id.listingsearch);
         list = new ArrayList<>();
         myAdapter = new ServiceAdapter(this, list,false,null,null);
         recyclerView.setAdapter(myAdapter);

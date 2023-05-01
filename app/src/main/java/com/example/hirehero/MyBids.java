@@ -1,3 +1,5 @@
+//This class is used to display the users own bids to the user, on the my bids page
+
 package com.example.hirehero;
 
 import androidx.annotation.NonNull;
@@ -116,17 +118,15 @@ public class MyBids extends AppCompatActivity implements BidAdapter.OnViewClickL
 
     @Override
     public void onDeleteClick(int position) {
-        // Get the bid that was clicked
+        //get the bid that was clicked
         Bid bidToDelete = mBidsList.get(position);
 
-        // Get a reference to the bids node for the listing
+        //get a reference to the bids node for the listing
         String url = "https://hirehero-386df-default-rtdb.asia-southeast1.firebasedatabase.app";
         DatabaseReference bidsRef = FirebaseDatabase.getInstance(url).getReference("Listings").child(bidToDelete.getListingid()).child("bids");
 
-        // Query the bids node to find the bid with the same bidId as the one to delete
+        //query the bids node to find the bid with the same bidId as the one to delete
         Query deleteQuery = bidsRef.orderByChild("bidid").equalTo(bidToDelete.getBidid());
-
-        // Add a listener to the query to delete the bid when the data is loaded
         deleteQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -135,7 +135,7 @@ public class MyBids extends AppCompatActivity implements BidAdapter.OnViewClickL
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    // Remove the bid from the list and update the RecyclerView
+                                    //remove the bid from the list and update recyclerviw
                                     mBidsList.remove(position);
                                     mBidAdapter.notifyItemRemoved(position);
                                     mBidAdapter.notifyItemRangeChanged(position, mBidsList.size());
@@ -146,7 +146,6 @@ public class MyBids extends AppCompatActivity implements BidAdapter.OnViewClickL
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     Toast.makeText(MyBids.this, "Failed to delete bid: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                    Log.e("onDeleteClick", "Failed to delete bid: " + e.getMessage());
                                 }
                             });
                 }
@@ -155,7 +154,6 @@ public class MyBids extends AppCompatActivity implements BidAdapter.OnViewClickL
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(MyBids.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("onDeleteClick", "Failed to query bids node: " + error.getMessage());
             }
         });
     }
@@ -164,6 +162,7 @@ public class MyBids extends AppCompatActivity implements BidAdapter.OnViewClickL
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.homeButton:
+                //go to user profile if home button clicked
                 startActivity(new Intent(this,UserProfile.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 break;

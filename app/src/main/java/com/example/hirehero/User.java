@@ -1,3 +1,5 @@
+//Class for user object
+
 package com.example.hirehero;
 
 public class User {

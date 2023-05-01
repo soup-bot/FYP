@@ -1,3 +1,5 @@
+//This class handles all the new account registration logic
+
 package com.example.hirehero;
 
 import androidx.appcompat.app.AppCompatActivity;

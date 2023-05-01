@@ -1,3 +1,5 @@
+//this class is for listing a new service
+
 package com.example.hirehero;
 
 import androidx.annotation.NonNull;
@@ -37,7 +39,6 @@ public class ListService extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        // service = findViewById(R.id.service);
         price = findViewById(R.id.price);
         details = findViewById(R.id.details);
         contact = findViewById(R.id.contact);
@@ -56,6 +57,8 @@ public class ListService extends AppCompatActivity implements View.OnClickListen
         String test = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Log.d("MyApp", "UID = " + test);
 
+
+        //set service list to spinner
         String[] serviceTags = {"Select Service", "Cleaning", "Painting", "Plumbing", "Electrical", "Landscaping", "Carpentry", "Moving", "Roofing", "Flooring", "HVAC", "Pest Control", "Pool Maintenance", "Handyman", "Window Cleaning"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinneritem, serviceTags);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -74,6 +77,7 @@ public class ListService extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+    //get and validate input
     private void submitListing() {
         Log.d("ListService", "submitListing() called");
         String serviceInput = service.getSelectedItem().toString().toLowerCase();
@@ -113,7 +117,6 @@ public class ListService extends AppCompatActivity implements View.OnClickListen
 
                 // get user's name from the dataSnapshot
                 String userName = dataSnapshot.child("name").getValue(String.class);
-                Log.d("d",userName);
 
                 // create a new listing object
                 Listing newListing = new Listing(serviceInput, priceInput, detailsInput, contactInput, listingId, userId, userName);
@@ -132,7 +135,6 @@ public class ListService extends AppCompatActivity implements View.OnClickListen
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.w("ListService", "loadUserName:onCancelled", databaseError.toException());
             }
         });
     }

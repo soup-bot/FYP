@@ -1,3 +1,5 @@
+//This class handles the user rating system after a bid is marked as complete
+
 package com.example.hirehero;
 
 import androidx.annotation.NonNull;
@@ -30,7 +32,7 @@ public class Rating extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating);
 
-        // Get the bidder ID from the intent extras
+        //get the bidder ID from the intent extras
         Intent intent = getIntent();
         mBidderId = intent.getStringExtra("bidderId");
         String url = "https://hirehero-386df-default-rtdb.asia-southeast1.firebasedatabase.app";
@@ -42,14 +44,14 @@ public class Rating extends AppCompatActivity {
             public void onClick(View v) {
                 float newRating = mRatingBar.getRating();
 
-                // Get a reference to the bidder's user node in Firebase
+                //get a reference to the bidder's user node in Firebase
                 DatabaseReference bidderRef = FirebaseDatabase.getInstance(url).getReference().child("Users").child(mBidderId);
 
-                // Update the bidder's rating in the database
+                //update the bidder's rating in the database
                 bidderRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        // Get the current rating and number of ratings from the database
+                        //get the current rating and number of ratings from the database
                         Object currentRatingObj = snapshot.child("rating").getValue();
                         float currentRating = 0;
                         if (currentRatingObj != null) {
@@ -60,26 +62,25 @@ public class Rating extends AppCompatActivity {
                             } else if (currentRatingObj instanceof Double) {
                                 currentRating = ((Double) currentRatingObj).floatValue();
                             } else {
-                                // Handle unknown type
                             }
                         }
                         int numOfRatings = snapshot.child("numOfRatings").getValue(Integer.class);
 
-                        // Calculate the new rating using a weighted average
+                        //calculate the new rating using a weighted average
                         float newAvgRating = (currentRating * numOfRatings + newRating) / (numOfRatings + 1);
                         String formattedRating = String.format("%.1f", newAvgRating); // format to 1 decimal place
 
-                        // Update the bidder's rating and number of ratings in the database
+                        //update the bidder's rating and number of ratings in the database
                         bidderRef.child("rating").setValue(formattedRating);
                         bidderRef.child("numOfRatings").setValue(numOfRatings + 1).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    // Rating updated successfully
+                                    //rating updated successfully
                                     Toast.makeText(Rating.this, "Rating submitted successfully", Toast.LENGTH_SHORT).show();
                                     finish();
                                 } else {
-                                    // Error updating rating
+                                    //error updating ratin
                                     Toast.makeText(Rating.this, "Error submitting rating", Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -88,7 +89,6 @@ public class Rating extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        // Handle database read error
                     }
                 });
             }

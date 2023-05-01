@@ -1,3 +1,5 @@
+//This class is the main profile page after the user logs in to the app
+
 package com.example.hirehero;
 
 import androidx.annotation.NonNull;

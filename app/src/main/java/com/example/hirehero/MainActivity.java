@@ -1,3 +1,5 @@
+//handles all the login page logic
+
 package com.example.hirehero;
 
 import androidx.appcompat.app.AppCompatActivity;

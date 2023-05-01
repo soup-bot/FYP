@@ -1,3 +1,5 @@
+//adapter for recyclerview for bids
+
 package com.example.hirehero;
 
 
@@ -71,11 +73,11 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
         tempPos = position;
         holder.amount.setText(String.valueOf(currentBid.getBidAmount()));
         holder.name.setText(currentBid.getBidderName());
-
         holder.contact.setText(currentBid.getBidderContact());
+
         String url = "https://hirehero-386df-default-rtdb.asia-southeast1.firebasedatabase.app";
-        Log.d("UID", "Bidder UID = "+ currentBid.getUid());
         DatabaseReference bidderRef = FirebaseDatabase.getInstance(url).getReference().child("Users").child(currentBid.getUid());
+        //get the user's current rating from database
         bidderRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -96,6 +98,8 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
             public void onCancelled(@NonNull DatabaseError error) {
             }
         });
+
+        //display the details on the bid card view
 
         String service, details, contact, price, listername = "";
         if (currentBid.getListing() != null){
@@ -118,6 +122,8 @@ public class BidAdapter extends RecyclerView.Adapter<BidAdapter.ViewHolder> {
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentBid.getUid().equals(currentUser.getUid())) {
+            //if its users own bids, show delete button and cardview (which shows the listing the bid was made on)
+            //else if other users bids, then show donebutton and rating
             holder.doneButton.setVisibility(View.GONE);
             holder.deleteButton.setVisibility(View.VISIBLE);
             holder.cardView.setVisibility(View.VISIBLE);

@@ -1,3 +1,5 @@
+//Adapter for recyclerview for services
+
 package com.example.hirehero;
 
 import android.annotation.SuppressLint;
@@ -91,7 +93,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.MyViewHo
                     if (clickedListing.getUserID().equals(currentUser.getUid())) {
                         //if user clicks their own listing, do nothing
                     } else {
-                        // Otherwise, start the biddingactivity
+                        //otherwise, start the biddingactivity
                         Intent intent = new Intent(context, BiddingActivity.class);
                         intent.putExtra("listing", clickedListing);
                         context.startActivity(intent);

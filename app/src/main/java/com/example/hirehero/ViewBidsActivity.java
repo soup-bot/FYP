@@ -1,3 +1,5 @@
+//This class is used to display the current bids on a specific listing to the user
+
 package com.example.hirehero;
 
 import androidx.annotation.NonNull;
@@ -46,11 +48,9 @@ public class ViewBidsActivity extends AppCompatActivity implements BidAdapter.On
         showBids();
     }
 
+    //add the bids that are on the listing to the adapter/recyclerview
     private void showBids() {
-       // Query query = mDatabase.orderByChild("listingID").equalTo(mListingId);
-      //  query.addValueEventListener(new ValueEventListener() {
         mDatabase.orderByChild("bidAmount").addListenerForSingleValueEvent(new ValueEventListener() {
-      //  mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 mBidsList.clear();

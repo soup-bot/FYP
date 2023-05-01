@@ -1,3 +1,5 @@
+//This class is used to display only the user's own service listings to the user and allows them to be deleted or to view the bids
+
 package com.example.hirehero;
 
 import androidx.annotation.NonNull;
@@ -53,19 +55,17 @@ public class MyListings extends AppCompatActivity implements ServiceAdapter.OnDe
         showCurrentUserListings();
     }
 
-    //method to display all listings in the database
+    //method to display current user's listings in db
     private void showCurrentUserListings(){
         list.clear();
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Log.d("UID", "UID = "+ currentUserId);
         Query query = database.orderByChild("userID").equalTo(currentUserId);
         query.addValueEventListener(new ValueEventListener() {
-      //  database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.d("MyListings", "onDataChange() called with snapshot: " + snapshot);
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Listing listing = dataSnapshot.getValue(Listing.class);
+                    //add listings to the list, where id = current uid (current users listings)
                     list.add(listing);
                 }
                 myAdapter.notifyDataSetChanged();
@@ -81,23 +81,26 @@ public class MyListings extends AppCompatActivity implements ServiceAdapter.OnDe
 
     @Override
     public void onClick(int position) {
+        //get position on the list to delete
         Listing listing = list.get(position);
         String currentUserId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         if (listing.getUserID().equals(currentUserId)) {
+            //if listing belongs to the current user, allow them to delete it
             database.child(listing.getListingID()).removeValue();
             Toast.makeText(this, "Listing deleted", Toast.LENGTH_SHORT).show();
             list.remove(position);
             myAdapter.notifyDataSetChanged();
         } else {
+            //otherwise dont allow deletion
             Toast.makeText(this, "You can only delete your own listings", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void onViewClick(int position) {
-        Log.d("MyListings", "onViewClick() called");
         Listing listing = list.get(position);
         Intent intent = new Intent(MyListings.this, ViewBidsActivity.class);
+        //pass listing id to viewbidsactivity
         intent.putExtra("listingId", listing.getListingID());
         startActivity(intent);
     }
@@ -110,6 +113,7 @@ public class MyListings extends AppCompatActivity implements ServiceAdapter.OnDe
     @Override
     public void onClick(View view) {
         switch (view.getId()){
+            //when home button pressed, go back to userprofile
             case R.id.homeButton:
                 startActivity(new Intent(this,UserProfile.class));
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);

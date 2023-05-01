@@ -1,3 +1,5 @@
+//Object for a service listing
+
 package com.example.hirehero;
 
 import java.io.Serializable;
